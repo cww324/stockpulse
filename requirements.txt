@@ -1,0 +1,33 @@
+# StockPulse - Development Requirements
+# Install: pip install -r requirements.txt
+
+# === Core API Framework ===
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# === Database ===
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+alembic==1.13.0
+
+# === Data Processing ===
+pandas==2.1.4
+numpy>=1.24.0
+yfinance==0.2.33
+
+# === Dashboard (Streamlit) ===
+streamlit==1.40.0
+plotly==5.24.0
+
+# === Environment & Config ===
+python-dotenv==1.0.0
+
+# === Testing ===
+pytest==7.4.3
+httpx==0.25.2
+
+# === Development ===
+black==23.11.0
+flake8==6.1.0

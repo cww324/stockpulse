@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: stockpulse-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-stockpulse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stockpulse_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-stockpulse}
+    ports:
+      - "5433:5432"
+    volumes:
+      - stockpulse_postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-stockpulse}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  stockpulse_postgres_data:
