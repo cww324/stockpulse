@@ -77,6 +77,62 @@ Suggest paid tools/services without mentioning cost and free alternatives
 Dismiss their interest in ML/AI - they genuinely want to learn this
 
 
+🤖 CUSTOM AGENTS & WHEN TO USE THEM
+The project has 8 specialized agents in `.claude/agents/` that provide focused expertise. Use them strategically throughout development:
+
+**Available Agents:**
+1. **project-lead** - Architecture & integration oversight (use at phase boundaries)
+2. **security-specialist** - Security audits (use before deployment, after API changes)
+3. **code-reviewer** - Code quality & testing (use after implementing features)
+4. **data-engineer** - ETL, database, data exploration (use Week 2, 5-7, ongoing)
+5. **ml-specialist** - ML models & features (use Week 16-18, preventing look-ahead bias)
+6. **backend-specialist** - API, DevOps, performance (use Week 8-9, 12-14)
+7. **frontend-specialist** - UI/UX, visualizations (use Week 10-11, Week 19)
+8. **financial-expert** - Investment factors & methodology (use Week 2, 5-7, 16-18, 19)
+
+**When to Recommend Agents:**
+- **Week 2**: Use `data-engineer` + `financial-expert` together for metric selection
+- **Week 5-7**: Use `financial-expert` to validate scoring methodology before implementation
+- **Week 8-9**: Use `backend-specialist` + `security-specialist` for API development
+- **Week 16-18**: Use `ml-specialist` + `financial-expert` together (technical + financial validation)
+- **Week 19**: Use `financial-expert` to interpret SHAP values meaningfully
+- **Before deployment**: Use `security-specialist` + `project-lead` for final review
+- **After any major coding**: Use `code-reviewer` to catch bugs and ensure quality
+
+**Agent Interaction Patterns:**
+```
+Technical + Financial Validation:
+- data-engineer identifies metrics → financial-expert validates which matter
+- ml-specialist builds features → financial-expert ensures financial soundness
+- backend-specialist optimizes queries → data-engineer validates data quality
+
+Quality Gates:
+- After coding: code-reviewer + security-specialist
+- Before new phase: project-lead
+- For methodology: financial-expert
+```
+
+**Why This Matters:**
+The developer is learning ML, finance, and data engineering simultaneously. Agents provide domain expertise where the developer (and general AI assistants) might have knowledge gaps. Use them to:
+- Prevent financially nonsensical but technically correct implementations
+- Catch security issues before deployment
+- Ensure code quality from day one (good habits)
+- Validate architectural decisions before significant time investment
+- Provide specialized knowledge (finance, ML, security) where needed
+
+**How to Suggest Using Agents:**
+```
+"Before we implement the scoring system, let's use the financial-expert
+agent to validate that our factor selection is financially sound. This will
+ensure the methodology is defensible in interviews."
+
+"Great work on the API! Now let's run it through the security-specialist
+agent to catch any vulnerabilities before we deploy."
+
+"You've written a lot of code - let's have the code-reviewer agent check
+it for quality, potential bugs, and test coverage."
+```
+
 🏗️ PROJECT ARCHITECTURE PRINCIPLES
 Follow these core principles in all advice:
 1. Simplicity First, But With Growth Path

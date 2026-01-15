@@ -50,6 +50,28 @@ Week	Focus	Deliverable	Hours
 18	ML Integration	ML endpoints in API, SHAP in UI	14
 🚀 FINAL: Production system with ML + explainability!
 
+---
+
+## 🤖 Custom Agents
+
+This project uses 8 specialized agents to provide domain expertise throughout development. Each week has recommended agents to use for validation, review, and guidance.
+
+**📖 See `docs/AGENT_WORKFLOW.md` for the complete week-by-week agent usage guide.**
+
+Quick summary:
+- **project-lead** - Architecture & integration (use at phase boundaries)
+- **security-specialist** - Security audits (use before deployment)
+- **code-reviewer** - Code quality & testing (use after coding)
+- **data-engineer** - ETL, database, data exploration (use Week 2-7, ongoing)
+- **ml-specialist** - ML models & features (use Week 16-18)
+- **backend-specialist** - API, DevOps, performance (use Week 8-9, 12-14)
+- **frontend-specialist** - UI/UX, visualizations (use Week 10-11, 19)
+- **financial-expert** - Investment methodology validation (use Week 2, 5-7, 16-18)
+
+See weekly sections below for specific agent recommendations (marked with 🤖).
+
+---
+
 🏗️ SYSTEM ARCHITECTURE
 High-Level Component Diagram
 ┌─────────────────────────────────────────────────────────────┐
@@ -189,6 +211,7 @@ Goal: Understand what data is available and how to use it
  Rank them - does it make sense?
  Adjust factors/weights if needed
 Week 2 Deliverable: ✅ Jupyter notebook with working calculations for 5 stocks
+🤖 **Agents to Use:** `data-engineer` (data exploration), `financial-expert` (metric selection & validation)
 
 🗄️ WEEK 3: Database Schema Design
 Goal: Design tables for warehouse (silver/gold layers)
@@ -212,6 +235,7 @@ Gold: stock_scores, weekly_snapshots, sector_scores, factor_weights
  Run seed.sql
  Test with manual INSERT and SELECT
 Week 3 Deliverable: ✅ Database schema created and documented
+🤖 **Agents to Use:** `data-engineer` (schema design), `project-lead` (architecture review)
 
 🧪 WEEK 4: Database Testing
 Goal: Programmatically interact with database
@@ -235,6 +259,7 @@ Goal: Programmatically interact with database
  Validate ranges (P/E can't be negative)
  Test with intentionally bad data
 Week 4 Deliverable: ✅ Can programmatically insert and query data
+🤖 **Agents to Use:** `data-engineer` (database testing), `code-reviewer` (code quality)
 
 🔄 WEEK 5: Ingest Pipeline (Bronze Layer)
 Goal: Fetch data for 100+ stocks and save to database
@@ -270,6 +295,7 @@ Goal: Fetch data for 100+ stocks and save to database
  Create docs/etl_pipeline.md explaining flow
  Note any data quality issues discovered
 Week 5 Deliverable: ✅ Script fetches 100+ stocks, saves raw data to database
+🤖 **Agents to Use:** `data-engineer` (ETL design & data quality), `code-reviewer` (error handling review)
 
 🧹 WEEK 6: Transform Pipeline (Silver Layer)
 Goal: Clean and normalize data into structured format
@@ -591,6 +617,7 @@ Goal: Everything works end-to-end, bugs fixed
  Document any known issues
  Create TODO list for future improvements
 Week 12 Deliverable: ✅ Bug-free application ready for deployment
+🤖 **Agents to Use:** `code-reviewer` (final code review), `security-specialist` (pre-deployment audit), `project-lead` (integration review)
 
 🚀 WEEK 13: Deployment
 Goal: Live site accessible on the internet
@@ -704,6 +731,7 @@ What would you do differently?
 How does your scoring work?
  List challenges you overcame
 Week 14 Deliverable: ✅ Polished portfolio piece ready to show employers
+🤖 **Agents to Use:** `project-lead` (final MVP review), `financial-expert` (methodology documentation validation)
 
 🎉 CHECKPOINT: MVP COMPLETE!
 You now have:
