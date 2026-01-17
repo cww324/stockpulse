@@ -73,6 +73,13 @@ CREATE TABLE IF NOT EXISTS processed_stocks (
     dividend_yield DECIMAL(8, 4),
     payout_ratio DECIMAL(8, 4),
 
+    -- 52-week range (for valuation scoring)
+    fifty_two_week_high DECIMAL(12, 4),
+    fifty_two_week_low DECIMAL(12, 4),
+
+    -- Risk metrics
+    beta DECIMAL(6, 4),
+
     -- Metadata
     snapshot_date DATE NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -90,6 +97,12 @@ CREATE TABLE IF NOT EXISTS stock_scores (
     snapshot_date DATE NOT NULL,
 
     -- Individual factor scores (0-100)
+    -- Mapping to scoring_methodology.md v2.0:
+    --   value_score = valuation (30% weight)
+    --   profitability_score = profitability (25% weight)
+    --   growth_score = growth (20% weight)
+    --   momentum_score = momentum (15% weight)
+    --   quality_score = health (10% weight)
     value_score DECIMAL(5, 2),
     growth_score DECIMAL(5, 2),
     profitability_score DECIMAL(5, 2),
@@ -100,6 +113,9 @@ CREATE TABLE IF NOT EXISTS stock_scores (
     composite_score DECIMAL(5, 2),
     rank INTEGER,
     percentile DECIMAL(5, 2),
+
+    -- Value trap detection (from financial-expert validation)
+    is_value_trap BOOLEAN DEFAULT FALSE,
 
     -- Explanations (human-readable)
     value_explanation TEXT,
@@ -289,6 +305,8 @@ CREATE INDEX IF NOT EXISTS idx_processed_stocks_sector ON processed_stocks(secto
 CREATE INDEX IF NOT EXISTS idx_stock_scores_ticker ON stock_scores(ticker);
 CREATE INDEX IF NOT EXISTS idx_stock_scores_date ON stock_scores(snapshot_date);
 CREATE INDEX IF NOT EXISTS idx_stock_scores_rank ON stock_scores(rank);
+CREATE INDEX IF NOT EXISTS idx_stock_scores_composite ON stock_scores(composite_score DESC);
+CREATE INDEX IF NOT EXISTS idx_stock_scores_date_rank ON stock_scores(snapshot_date, rank);
 
 CREATE INDEX IF NOT EXISTS idx_ml_predictions_ticker ON ml_predictions(ticker);
 CREATE INDEX IF NOT EXISTS idx_ml_predictions_date ON ml_predictions(snapshot_date);

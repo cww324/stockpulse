@@ -2,7 +2,7 @@
 
 **Load this file at the start of each session.**
 
-Last Updated: January 15, 2026
+Last Updated: January 17, 2026
 
 ---
 
@@ -10,12 +10,15 @@ Last Updated: January 15, 2026
 
 This file is your **session starter**. For deeper details, reference these files:
 
-- **@PROJECT_PLAN.md** - Complete 18-week timeline with detailed weekly tasks and deliverables
+- **@PROJECT_SUMMARY.md** - High-level 18-week timeline and current status (lean version)
+- **@docs/weeks/week-XX.md** - Current week's detailed tasks (load only what you need)
 - **@AI_ROLE.md** - Guidelines for AI assistants on how to help with this project
 - **@docs/AGENT_WORKFLOW.md** - Week-by-week guide for using the 8 specialized agents
 - **@docs/DECISIONS.md** - Architectural decisions and rationale
 
-**Quick workflow:** Load `@CLAUDE.md` → Check current week → Consult `@docs/AGENT_WORKFLOW.md` for which agents to use
+**Quick workflow:** Load `@CLAUDE.md` → Check current week → Load `@docs/weeks/week-XX.md` for detailed tasks
+
+**Note:** `PROJECT_PLAN.md` still exists as a complete reference, but use the weekly files to save tokens
 
 ---
 
@@ -24,7 +27,7 @@ This file is your **session starter**. For deeper details, reference these files
 StockPulse is an ML-powered stock analysis platform that analyzes S&P 500 stocks using rule-based scoring AND machine learning (XGBoost), with SHAP explainability. The goal is to demonstrate data engineering + ML + full-stack skills for job applications.
 
 **Developer**: Junior dev (bootcamp grad), targeting backend/data/ML engineer roles
-**Timeline**: ~21 weeks @ 2 hrs/day
+**Timeline**: ~21 weeks @ 2 hrs/day (18 core + 3 paper trading)
 **Budget**: ~$20-30/month
 
 ---
@@ -32,8 +35,8 @@ StockPulse is an ML-powered stock analysis platform that analyzes S&P 500 stocks
 ## Current Status
 
 **Phase**: 1 (Foundation & MVP)
-**Week**: 1 - Setup Complete
-**Next**: Week 2 - Data Exploration
+**Week**: 2 - Data Exploration Complete
+**Next**: Week 3 - Database Schema Design
 
 ### What's Working
 - [x] PostgreSQL database (Docker, port 5433)
@@ -41,14 +44,16 @@ StockPulse is an ML-powered stock analysis platform that analyzes S&P 500 stocks
 - [x] Python environment (venv, all packages installed)
 - [x] Streamlit skeleton app (connects to DB, shows factor weights)
 - [x] Alpha Vantage API key configured
+- [x] yfinance data exploration (50-70 fields identified)
+- [x] Scoring methodology defined (5 factors, validated by financial-expert)
+- [x] Finance documentation created (finance_101.md, data_sources.md)
 
 ### What's Not Yet Built
-- [ ] ETL pipeline (ingest, transform, score)
-- [ ] yfinance data fetching (got rate limited, retry later)
-- [ ] FastAPI backend
-- [ ] ML model (Phase 2)
+- [ ] ETL pipeline (ingest, transform, score) - Week 5-7
+- [ ] FastAPI backend - Week 8-9
+- [ ] ML model (Phase 2) - Week 16-18
 - [ ] SEC EDGAR scraper (Phase 2)
-- [ ] AWS deployment
+- [ ] AWS deployment - Week 13
 
 ---
 
@@ -156,13 +161,12 @@ Use the data-engineer agent to review my ingest.py for data quality issues
 - **Parallel work**: Multiple agents can work simultaneously
 - **Consistent standards**: Agents enforce best practices
 
-### Current Phase Agents (Week 2)
+### Current Phase Agents (Week 3)
 
-For data exploration, primarily use:
-- **data-engineer**: Data source exploration, schema validation
-- **financial-expert**: Which financial metrics matter for alpha generation
-- **code-reviewer**: Review exploration notebooks/scripts
-- **project-lead**: Ensure exploration findings align with project goals
+For database schema design, primarily use:
+- **data-engineer**: Schema design, indexing strategy, data types
+- **project-lead**: Ensure schema supports all planned features
+- **code-reviewer**: Review database helper functions
 
 ### Agent Interaction Patterns
 
@@ -218,18 +222,21 @@ ALPHA_VANTAGE_API_KEY=<configured>
 
 ## Immediate Next Steps
 
-### Week 2: Data Exploration
-1. Create Jupyter notebook for data exploration
-2. Test yfinance with sample stocks (AAPL, MSFT, NVDA)
-3. Understand data structure and available fields
-4. Document findings in `docs/data_sources.md`
-5. Define scoring methodology
+### Week 3: Database Schema Design
+1. Review/update database schema based on Week 2 findings
+2. Add new fields identified (ROA, dividend_yield, return_12m)
+3. Create database helper functions (CRUD operations)
+4. Add indexes for common queries
+5. Test with sample data
 
 ### After That
-- Week 3-4: Database testing, helper functions
+- Week 4: Database testing, helper functions completion
 - Week 5-7: ETL pipeline (ingest → transform → score)
 - Week 8-9: FastAPI backend
 - Week 10-11: Streamlit dashboard with real data
+- Week 12-14: Integration, testing, deployment
+- Week 15-18: ML model (XGBoost) + SHAP explanations
+- Week 19-21: Paper trading via Alpaca (see FUTURE_FEATURES.md)
 
 ---
 
@@ -247,8 +254,11 @@ ALPHA_VANTAGE_API_KEY=<configured>
 - **Repo**: (local for now)
 - **Live Site**: Not deployed yet
 - **Key Docs**:
-  - `PROJECT_PLAN.md` - 18-week timeline with detailed tasks
+  - `PROJECT_SUMMARY.md` - High-level overview (use this instead of full PROJECT_PLAN.md)
+  - `docs/weeks/week-XX.md` - Weekly detailed tasks (load only current week)
   - `AI_ROLE.md` - AI assistant guidelines
   - `docs/AGENT_WORKFLOW.md` - Agent usage guide (week-by-week)
   - `docs/DECISIONS.md` - Architecture decisions
+  - `FUTURE_FEATURES.md` - Phase 3 paper trading plan + future ideas
   - `.claude/agents/` - 8 specialized agent definitions
+  - `PROJECT_PLAN.md` - Complete reference (2000+ lines - use sparingly to save tokens)

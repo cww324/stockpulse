@@ -1,0 +1,62 @@
+{
+  "AAPL": {
+    "info_available": false,
+    "history_available": false,
+    "financials_available": false,
+    "balance_sheet_available": false,
+    "cashflow_available": false,
+    "quarterly_financials_available": false,
+    "quarterly_balance_sheet_available": false,
+    "quarterly_cashflow_available": false,
+    "actions_available": false,
+    "recommendations_available": false
+  },
+  "MSFT": {
+    "info_available": false,
+    "history_available": false,
+    "financials_available": false,
+    "balance_sheet_available": false,
+    "cashflow_available": false,
+    "quarterly_financials_available": false,
+    "quarterly_balance_sheet_available": false,
+    "quarterly_cashflow_available": false,
+    "actions_available": false,
+    "recommendations_available": false
+  },
+  "NVDA": {
+    "info_available": false,
+    "history_available": false,
+    "financials_available": false,
+    "balance_sheet_available": false,
+    "cashflow_available": false,
+    "quarterly_financials_available": false,
+    "quarterly_balance_sheet_available": false,
+    "quarterly_cashflow_available": false,
+    "actions_available": false,
+    "recommendations_available": false
+  },
+  "JPM": {
+    "info_available": false,
+    "history_available": false,
+    "financials_available": false,
+    "balance_sheet_available": false,
+    "cashflow_available": false,
+    "quarterly_financials_available": false,
+    "quarterly_balance_sheet_available": false,
+    "quarterly_cashflow_available": false,
+    "actions_available": false,
+    "recommendations_available": false
+  },
+  "XOM": {
+    "info_available": false,
+    "history_available": false,
+    "financials_available": false,
+    "balance_sheet_available": false,
+    "cashflow_available": false,
+    "quarterly_financials_available": false,
+    "quarterly_balance_sheet_available": false,
+    "quarterly_cashflow_available": false,
+    "actions_available": false,
+    "recommendations_available": false
+  }
+}
