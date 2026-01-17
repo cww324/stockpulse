@@ -35,8 +35,8 @@ StockPulse is an ML-powered stock analysis platform that analyzes S&P 500 stocks
 ## Current Status
 
 **Phase**: 1 (Foundation & MVP)
-**Week**: 2 - Data Exploration Complete
-**Next**: Week 3 - Database Schema Design
+**Week**: 3 - Database Schema Design COMPLETE
+**Next**: Week 5 - ETL Pipeline (Data Ingestion)
 
 ### What's Working
 - [x] PostgreSQL database (Docker, port 5433)
@@ -47,6 +47,10 @@ StockPulse is an ML-powered stock analysis platform that analyzes S&P 500 stocks
 - [x] yfinance data exploration (50-70 fields identified)
 - [x] Scoring methodology defined (5 factors, validated by financial-expert)
 - [x] Finance documentation created (finance_101.md, data_sources.md)
+- [x] Database models (Pydantic) - `database/models.py`
+- [x] Database helpers (CRUD operations) - `database/helpers.py`
+- [x] Database utilities (connections) - `database/db_utils.py`
+- [x] Database tests (27 passing) - `tests/test_database.py`
 
 ### What's Not Yet Built
 - [ ] ETL pipeline (ingest, transform, score) - Week 5-7
@@ -111,8 +115,13 @@ stockpulse/
 ├── ml/                   # ML training (empty stubs)
 │
 ├── database/
+│   ├── __init__.py       # Package exports
 │   ├── schema.sql        # Full schema (13 tables)
-│   └── seed.sql          # Factor weights
+│   ├── seed.sql          # Factor weights
+│   ├── models.py         # Pydantic models for validation
+│   ├── db_utils.py       # Connection management
+│   ├── helpers.py        # CRUD operations
+│   └── migrations/       # Schema migrations
 │
 ├── docs/
 │   ├── DECISIONS.md      # Architecture decisions
@@ -161,12 +170,12 @@ Use the data-engineer agent to review my ingest.py for data quality issues
 - **Parallel work**: Multiple agents can work simultaneously
 - **Consistent standards**: Agents enforce best practices
 
-### Current Phase Agents (Week 3)
+### Current Phase Agents (Week 5 - ETL Pipeline)
 
-For database schema design, primarily use:
-- **data-engineer**: Schema design, indexing strategy, data types
-- **project-lead**: Ensure schema supports all planned features
-- **code-reviewer**: Review database helper functions
+For data ingestion, primarily use:
+- **data-engineer**: ETL pipeline design, data quality, error handling
+- **code-reviewer**: Review ingest.py after implementation
+- **financial-expert**: Validate data fields being captured are correct
 
 ### Agent Interaction Patterns
 
@@ -220,18 +229,35 @@ ALPHA_VANTAGE_API_KEY=<configured>
 
 ---
 
+## Git Branch Strategy
+
+**Gitflow-style workflow:**
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production releases only (MVP, shipped versions) |
+| `develop` | Integration branch for ongoing work |
+| `feature/etl-pipeline` | Week 5-7: Data ingestion & scoring |
+| `feature/fastapi-backend` | Week 8-9: API development |
+| `feature/streamlit-dashboard` | Week 10-11: Frontend |
+| `feature/ml-scoring` | Week 16-18: XGBoost + SHAP |
+
+**Workflow:** `feature/*` → `develop` → `main` (at MVP/release milestones)
+
+---
+
 ## Immediate Next Steps
 
-### Week 3: Database Schema Design
-1. Review/update database schema based on Week 2 findings
-2. Add new fields identified (ROA, dividend_yield, return_12m)
-3. Create database helper functions (CRUD operations)
-4. Add indexes for common queries
-5. Test with sample data
+### Week 5: ETL Pipeline - Data Ingestion (START HERE)
+1. Create `feature/etl-pipeline` branch from develop
+2. Build `etl/ingest.py` - Fetch stock data from yfinance
+3. Handle rate limiting (50 stocks/batch, 2-second delays)
+4. Save raw data to bronze layer (raw_stock_data table)
+5. Track ETL runs in etl_runs table
 
 ### After That
-- Week 4: Database testing, helper functions completion
-- Week 5-7: ETL pipeline (ingest → transform → score)
+- Week 6: Data transformation (bronze → silver)
+- Week 7: Scoring engine (silver → gold)
 - Week 8-9: FastAPI backend
 - Week 10-11: Streamlit dashboard with real data
 - Week 12-14: Integration, testing, deployment
