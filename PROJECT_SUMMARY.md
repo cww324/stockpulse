@@ -3,7 +3,7 @@
 **Last Updated:** January 17, 2026
 **Status:** Week 3 Complete - Ready for Week 5 (ETL Pipeline)
 **Timeline:** 21 weeks @ 2 hours/day = ~290 total hours (18 core + 3 paper trading)
-**Branch Strategy:** Feature-based branches (e.g., `feature/etl-pipeline`)
+**Branch Strategy:** Gitflow (`feature/*` → `develop` → `main` at releases)
 
 ---
 
@@ -182,7 +182,7 @@
 - [ ] AWS deployment - Week 13
 
 ### 📍 Next Steps (Week 5 - ETL Pipeline)
-1. Create `feature/etl-pipeline` branch from main
+1. Create `feature/etl-pipeline` branch from develop
 2. Build `etl/ingest.py` - fetch stock data from yfinance
 3. Handle rate limiting (50 stocks/batch, 2-second delays)
 4. Save raw data to bronze layer (raw_stock_data table)
